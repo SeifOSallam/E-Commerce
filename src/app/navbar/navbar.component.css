@@ -1,0 +1,9 @@
+.nav {
+    background-color: rgb(211, 210, 210);
+}
+.navElement {
+    text-decoration: none;
+}
+.is-active {
+    color: blue !important;
+}

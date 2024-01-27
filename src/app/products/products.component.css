@@ -1,0 +1,33 @@
+#addtocart {
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    border: 1px solid black;
+    text-decoration: none;
+    color: black;
+    padding: 5px 20px 5px 20px;
+    border-radius: 50px;
+    transition: 0.2s
+}
+#addtocart:hover {
+    background-color: rgb(3, 83, 3);
+    color: white;
+    border:rgb(3, 83, 3);
+}
+.ogprice {
+    text-decoration:line-through;
+}
+#instock {
+    padding: 5px 20px 5px 20px;
+    background-color: green;
+    border-radius: 50px;
+    left:10%;
+    top:2%;
+}
+#outstock {
+    padding: 5px 20px 5px 20px;
+    background-color: red;
+    border-radius: 50px;
+    left:10%;
+    top:2%;
+}

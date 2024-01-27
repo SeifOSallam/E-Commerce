@@ -1,0 +1,40 @@
+<div class="d-flex flex-wrap">
+    @for (product of products; track product.id; let i = $index) {
+        <div class="w-25 p-4">
+            <div class="card border-0 h-100 position-relative">
+                @if (product.stock > 0) {
+                    <span id="instock" class="text-white position-absolute">In Stock</span>
+                }
+                @else {
+                    <span id="outstock" class="text-white position-absolute">Out Of Stock</span>
+                }
+                <a class="h-50" [routerLink]="'items/' + product.id">
+                    <img [src]="product.thumbnail" class="card-img-top h-100" alt="" />
+                </a>
+                <div class="card-body position-relative p-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title">{{product.title}}</h5>
+                        <div class="d-flex flex-column">
+                            <span class="card-text ogprice">
+                                {{product.price}}$
+                            </span>
+                            <span class="card-text">
+                                {{(product.price - (product.price * product.discountPercentage/100)).toFixed(1)}}$
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <i class="fa fa-star" style="color:orange"></i>
+                        <i class="fa fa-star" style="color:orange"></i>
+                        <i class="fa fa-star" style="color:orange"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <a href="#" class="mt-5" id="addtocart">
+                        Add to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

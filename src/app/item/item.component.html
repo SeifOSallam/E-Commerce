@@ -1,0 +1,85 @@
+<div class="container main mt-5">
+    <div class="row h-100">
+        <div class="col border d-flex flex-column h-100 p-0">
+            <div class="h-75 img">
+                <img class="h-100 w-100" [src]="itemDetails.thumbnail" alt="">
+            </div>
+            <div class="h-25 container">
+                <div class="row h-100">
+                    <div class="col img">
+                        <img class="h-100 w-100" [src]="itemDetails.images[0]" alt="">
+                    </div>
+                    <div class="col img">
+                        <img class="h-100 w-100" [src]="itemDetails.images[1]" alt="">
+                    </div>
+                    <div class="col img">
+                        <img class="h-100 w-100"[src]="itemDetails.images[2]" alt="">
+                    </div>
+                    <div class="col img">
+                        <img class="h-100 w-100" [src]="itemDetails.images[3]" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="col ">
+            <h1>{{itemDetails.title}}</h1>
+            <p>{{itemDetails.description}}</p>
+            <div>
+                <i class="fa fa-star" style="color:orange"></i>
+                <i class="fa fa-star" style="color:orange"></i>
+                <i class="fa fa-star" style="color:orange"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="py-4 border-top border-bottom">
+                <h2>{{itemDetails.price.toFixed(2)}}$</h2>
+            </div>
+            @if (itemDetails.stock > 0) {
+                <span id="instock" class="text-white">In Stock</span>
+            }
+            @else {
+                <span id="outstock" class="text-white">Out Of Stock</span>
+            }
+            <br>
+            <br>
+            <p>More Information</p>
+            <div class="container w-50 ms-2 p-0">
+                <div class="row">
+                    <div class="col minfo graybg w-100 text-center">
+                        {{itemDetails.category}}
+                    </div>
+                    <div class="col minfo graybg w-100 ms-3 text-center">
+                        {{itemDetails.brand}}
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex ">
+                <div class="d-flex align-items-center plusminusbtn graybg" style="height: 50px">
+                    <button class="border-0 graybg h-100" (click) = "decreaseNum(number.innerText)"><i class="fas fa-minus"></i></button>
+                    <span class="graybg h-100 d-flex align-items-center" id="number" #number>1</span>
+                    <button class="border-0 graybg h-100" (click) = "increaseNum(number.innerText)"><i class="fas fa-plus"></i></button>
+                </div>
+                @if (itemDetails.stock > 0) {
+                    <div class="d-flex flex-column">
+                        <span>Only <span style="color:orange">{{itemDetails.stock}} Items</span> Left!</span>
+                        <span>Don't miss it</span>
+                    </div>
+                }
+            </div>
+            <div class="container w-75 ms-2 p-0">
+                <div class="row">
+                    <div class="col buy clickable minfo graybg w-100 text-center">
+                        Buy Now
+                    </div>
+                    <div class="col addcart clickable minfo w-100 ms-3 text-center">
+                        Add to Cart
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 export const routes: Routes = [
     {
         path : '',
-        component : ProductsComponent
+        component : ProductsComponent,
+        title: "Home"
     },
     {
         path: 'items/:id',

@@ -1,1 +1,47 @@
-<p>login-page works!</p>
+<form class="w-25 border shadow m-auto p-4 mt-5"
+#loginForm="ngForm"
+(ngSubmit) = "handleForm(loginForm)">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" name="email" id="email" class="form-control"
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+    required
+    [(ngModel)] = "formValues.email"
+    #email = "ngModel"
+    >
+    @if(email.invalid && (email.touched || email.dirty) ) {
+        <div id="emailHelp" class="form-text text-danger">
+            @if(email.errors?.['required']){
+            <small>This field is required</small>
+            } 
+            @if(email.errors?.['pattern']){
+            <small>Invalid Email Format.</small>
+            }
+        </div>
+    }
+    <br>
+    <label for="password" class="form-label">Password</label>
+    <input type="password" name="password" id="password" class="form-control"
+    required
+    minlength="8"
+    maxlength="30"
+    [(ngModel)] = "formValues.password"
+    #password = "ngModel"
+    >
+    @if(password.invalid && (password.touched || password.dirty) ) {
+        <div id="passwordHelp" class="form-text text-danger">
+          @if(password.errors?.['required']){
+            <small>This field is required</small>
+          } 
+          @if(password.errors?.['minlength']) {
+            <small>Min. length is 8 characters</small>
+          } 
+          @if(password.errors?.['maxlength']) {
+            <small>Max. length is 30 character</small>
+          }
+        </div>
+        }
+    <br>
+    <button type="submit" class="btn btn-primary w-100" [disabled]="!loginForm.valid">Login</button><br>
+    <span style="font-size: 12px;">Don't have an account? <a routerLink="/register">Register</a></span>
+
+</form>

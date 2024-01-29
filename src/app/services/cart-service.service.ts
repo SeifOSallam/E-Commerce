@@ -12,13 +12,12 @@ export class CartServiceService {
 
   addToCart(prod : Product) {
     const currVal = this.productsCart.value;
-    console.log(this.productsCart.value)
     const updatedVal = [...currVal, prod];
     this.productsCart.next(updatedVal);
-    console.log("added");
   }
-  removeFromCart(index : number) {
+  removeFromCart(product : Product) {
     const currVal = this.productsCart.value;
+    const index = this.productsCart.value.findIndex(p => p === product)
     currVal.splice(index, 1);
     this.productsCart.next(currVal);
   }

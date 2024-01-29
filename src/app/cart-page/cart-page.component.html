@@ -17,14 +17,29 @@
                         </div>
                     </td>
                     <td style="width: 40%">{{product.description}}</td>
-                    <td style="width: 20%">{{product.stock}}</td>
-                    <td style="width: 15%"><button class="rmvbtn rounded" (click)="removeProduct($index)">X</button></td>
+                    <td style="width: 20%">
+                        <div class="container-fluid h-75">
+                            <div class="row w-100 flex-nowrap">
+                                <div class="col">
+                                    <button class="bg-danger" (click)="decreaseQuantity($index)"><i class="fas fa-minus"></i></button>
+                                </div>
+                                <div class="col text-center">
+                                    <span class="" id="quantity{{$index}}">1</span>
+                                </div>
+                                <div class="col">
+                                    <button class="bg-success" (click)="increaseQuantity($index)"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td style="width: 15%"><button class="rmvbtn rounded" (click)="removeProduct(product, $index)">X</button></td>
                     <td style="width: 10%">${{product.price}}</td>
                 </tr>
             }
         }
     </table>
-    
+
     @if (productsCart.length == 0) {
         <h1>Cart is Empty</h1>
     }
@@ -35,7 +50,7 @@
                     Total
                 </div>
                 <div class="col">
-                    ${{productsCart}}
+                    $<span id="price">0</span>
                 </div>
             </div>
         </div>

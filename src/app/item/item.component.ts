@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Input, Output } from '@angular/core';
 import { Product } from '../models/product';
-import Products from '../../assets/data/products-list.json'
+import { ProductsServiceService } from '../services/products-service.service';
+import { CartServiceService } from '../services/cart-service.service';
 @Component({
   selector: 'app-item',
   standalone: true,
@@ -11,9 +12,15 @@ import Products from '../../assets/data/products-list.json'
   styleUrl: './item.component.css'
 })
 export class ItemComponent {
-  products : Array<Product> = Products;
   @Input() id : string = "";
   itemDetails !: Product;
+
+  constructor(private productsService: ProductsServiceService,
+     private cartService: CartServiceService) {}
+  ngOnInit() {
+    this.productsService.getProduct(this.id).subscribe((res : any) => this.itemDetails = res);
+  }
+
   createDummyProduct() {
     return {
       id : 0,
@@ -30,13 +37,11 @@ export class ItemComponent {
       createdAt:""
     }
   }
-  ngOnInit() {
-    this.itemDetails = this.products.find((p : Product) => p.id == parseInt(this.id)) || this.createDummyProduct();
-  }
   increaseNum(currVal : string) {
     const element = document.getElementById("number");
     if (element) {
-      element.innerText = (parseInt(currVal) + 1).toString();
+      if (parseInt(currVal) < this.itemDetails.stock)
+        element.innerText = (parseInt(currVal) + 1).toString();
     }
   }
   decreaseNum(currVal : string) {
@@ -46,5 +51,8 @@ export class ItemComponent {
         element.innerText = (parseInt(currVal) - 1).toString();
       }
     }
+  }
+  addToCart() {
+    this.cartService.addToCart(this.itemDetails)
   }
 }

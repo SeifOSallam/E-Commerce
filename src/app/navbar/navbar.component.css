@@ -3,6 +3,7 @@
 }
 .navElement {
     text-decoration: none;
+    color:black;
 }
 .is-active {
     color: blue !important;

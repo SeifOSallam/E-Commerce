@@ -1,0 +1,13 @@
+
+th, td {
+    padding: 15px 0px 15px 0px;
+}
+.rmvbtn {
+    padding: 20px 30px;
+    font-size: 18px;
+    border:none;
+    background-color: rgb(207, 26, 26);
+}
+.rmvbtn:hover {
+    cursor: pointer;
+}
